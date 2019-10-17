@@ -27,6 +27,9 @@ jobs:
     
     - name: Run a one-line script
       run: dir
+    
+    - name: Run a one-line script
+      run: dir WebApplication1
 
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v1
