@@ -1,0 +1,29 @@
+name: ASP.NET app deploy to Azure
+
+on: [push,pull_request]
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-2019
+    steps:
+
+    # checkout the repo
+    - uses: actions/checkout@master
+    
+    - name: Run a one-line script
+      run: dir
+    
+    - name: Setup Nuget.exe
+      uses: warrenbuckley/Setup-Nuget@v1
+    
+    - name: Restore
+      run: nuget restore
+      
+    # use msbuild to build VS solution 
+    - name: build solution
+      run: |
+        echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" WebApplication1.sln -t:reuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="WebApplication1.zip"
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" WebApplication1.sln -t:reuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="WebApplication1.zip"
+    
+    - name: Run a one-line script
+      run: dir
