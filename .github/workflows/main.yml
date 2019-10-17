@@ -22,9 +22,9 @@ jobs:
     # use msbuild to build VS solution 
     - name: Build solution
       run: |
-        echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" WebApplication1.sln -t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="WebApplication1.zip"
-        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" WebApplication1.sln -t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="WebApplication1.zip"
-    
+        echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" WebApplication1.sln -t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="WebAppPackage"
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" WebApplication1.sln -t:rebuild /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="WebAppPackage"
+   
     - name: Run a one-line script
       run: dir
     
@@ -36,4 +36,4 @@ jobs:
       with: 
         app-name: aspnetweb # Replace with your app name
         publish-profile: ${{ secrets.publishProfile }} # Define secret variable in repository settings as per action documentation
-        package: 'WebApplication1/WebApplication1.zip'
+        package: 'WebAppPackage'
